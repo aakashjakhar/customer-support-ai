@@ -1,51 +1,37 @@
 import os
-from urllib.parse import quote_plus
+import ssl
 
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.engine import URL
 
 load_dotenv()
 
+MYSQL_HOST = os.getenv("MYSQL_HOST")
+MYSQL_PORT = int(os.getenv("MYSQL_PORT", "4000"))
+MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
 MYSQL_USER = os.getenv("MYSQL_USER")
 MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
-MYSQL_HOST = os.getenv("MYSQL_HOST")
-MYSQL_PORT = os.getenv("MYSQL_PORT", "4000")
-MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
 
-required_variables = {
-    "MYSQL_USER": MYSQL_USER,
-    "MYSQL_PASSWORD": MYSQL_PASSWORD,
-    "MYSQL_HOST": MYSQL_HOST,
-    "MYSQL_DATABASE": MYSQL_DATABASE,
-}
-
-missing_variables = [
-    name for name, value in required_variables.items() if not value
-]
-
-if missing_variables:
-    raise ValueError(
-        f"Missing database environment variables: "
-        f"{', '.join(missing_variables)}"
-    )
-
-# Safely handle special characters such as @, #, / and : in the password.
-encoded_user = quote_plus(MYSQL_USER)
-encoded_password = quote_plus(MYSQL_PASSWORD)
-
-DATABASE_URL = (
-    f"mysql+pymysql://{encoded_user}:{encoded_password}"
-    f"@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
+DATABASE_URL = URL.create(
+    drivername="mysql+pymysql",
+    username=MYSQL_USER,
+    password=MYSQL_PASSWORD,
+    host=MYSQL_HOST,
+    port=MYSQL_PORT,
+    database=MYSQL_DATABASE,
 )
+
+ssl_context = ssl.create_default_context()
 
 engine = create_engine(
     DATABASE_URL,
+    connect_args={
+        "ssl": ssl_context
+    },
     pool_pre_ping=True,
     pool_recycle=300,
-    connect_args={
-        "ssl": {}
-    }
 )
 
 SessionLocal = sessionmaker(
@@ -74,7 +60,7 @@ def test_database_connection():
             ).scalar()
 
             print("TiDB connection successful")
-            print(f"Connected database: {database_name}")
+            print("Connected database:", database_name)
 
     except Exception as error:
         print("TiDB connection failed")
