@@ -1,0 +1,28 @@
+Installation Guide
+
+Laptop Setup
+
+1. Unbox the laptop carefully.
+2. Connect the charger.
+3. Press the power button.
+4. Complete the Windows setup.
+5. Connect to Wi-Fi.
+6. Login using your Microsoft account.
+7. Install system updates.
+
+Smartphone Setup
+
+1. Power on the phone.
+2. Select language.
+3. Connect to Wi-Fi.
+4. Sign in with your Google account.
+5. Restore backup if available.
+6. Install software updates.
+
+Software Installation
+
+Download applications only from the official website or trusted app stores.
+
+Restart the device after installing major updates.
+
+For installation problems, contact TechMart Technical Support.

@@ -1,0 +1,145 @@
+ Billing Policy
+
+=========================================
+PAYMENT METHODS
+=========================================
+
+Customers can pay using:
+
+- Credit Card (Visa, MasterCard, American Express)
+- Debit Card
+- UPI
+- Net Banking
+- Wallets (Paytm, PhonePe, Google Pay)
+- EMI (Available on selected products)
+- Cash on Delivery (Available for selected locations)
+
+=========================================
+PAYMENT FAILED
+=========================================
+
+If your payment fails:
+
+1. Check your internet connection.
+2. Verify your bank account balance.
+3. Ensure your card details are correct.
+4. Try another payment method.
+5. Wait 10 minutes before trying again.
+
+If the amount has been deducted but the order was not placed:
+
+- The payment is usually reversed within 5–7 business days.
+- If not refunded, contact TechMart Billing Support.
+
+=========================================
+INVOICE
+=========================================
+
+Customers can download invoices by:
+
+1. Logging into their TechMart account.
+2. Opening "My Orders".
+3. Selecting the order.
+4. Clicking "Download Invoice".
+
+=========================================
+GST INVOICE
+=========================================
+
+GST invoices are available for eligible business purchases.
+
+Customers should provide their GST Number during checkout.
+
+GST details cannot be modified after the order is confirmed.
+
+=========================================
+PRICE INFORMATION
+=========================================
+
+All prices displayed on the website include applicable taxes unless stated otherwise.
+
+Prices may change during promotional offers.
+
+=========================================
+EMI
+=========================================
+
+EMI is available on selected products.
+
+Available EMI tenure:
+
+- 3 Months
+- 6 Months
+- 9 Months
+- 12 Months
+
+Bank approval is required.
+
+=========================================
+ORDER PAYMENT STATUS
+=========================================
+
+Customers can check payment status by:
+
+Login
+→ My Orders
+→ Payment Details
+
+=========================================
+REFUND FOR FAILED PAYMENT
+=========================================
+
+If payment fails but money is deducted:
+
+Refunds are generally processed within:
+
+5–7 Business Days
+
+depending on the customer's bank.
+
+=========================================
+BILLING SUPPORT
+=========================================
+
+Email:
+billing@techmart.com
+
+Phone:
+1800-123-4567
+
+Working Hours:
+
+Monday to Saturday
+
+9:00 AM – 7:00 PM
+
+Pricing list 
+Laptops
+UltraBook 14 - ₹55,999
+ProBook 15 - ₹72,999
+Gaming X17 - ₹98,999
+
+Smartphones
+Smart X - ₹19,999
+Smart Pro - ₹29,999
+Smart Max - ₹39,999
+
+Tablets
+TechTab 10 - ₹18,999
+TechTab Pro 12 - ₹29,999
+
+Accessories
+Wireless Mouse - ₹799
+Mechanical Keyboard - ₹2,499
+Laptop Backpack - ₹1,299
+USB-C Hub - ₹1,199
+Wireless Charger - ₹999
+
+Audio
+Wireless Earbuds - ₹2,999
+Bluetooth Headphones - ₹4,999
+Portable Speaker - ₹3,499
+
+Shipping is free on orders above ₹999.
+
+Prices are subject to change during promotional offers and festive sales.
