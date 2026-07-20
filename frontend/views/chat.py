@@ -1,55 +1,50 @@
 import streamlit as st
 
-from utils.api import (
-    send_message,
-    get_chat_history
-)
-
+from utils.api import send_message, get_chat_history
 from components.sidebar import sidebar
 
 
 def chat_page():
 
-    # -----------------------------
-    # Sidebar
-    # -----------------------------
     sidebar()
 
     st.title("🤖 Customer Support AI")
-
     st.divider()
 
-    # -----------------------------
-    # Load Chat History Only Once
-    # -----------------------------
-    if "history" not in st.session_state:
+    if "user_id" not in st.session_state:
+        st.error("Please login first.")
+        st.session_state.page = "login"
+        st.rerun()
 
-        response = get_chat_history(
+    if (
+        "history" not in st.session_state
+        or not isinstance(st.session_state.history, list)
+    ):
+        status_code, data = get_chat_history(
             st.session_state.user_id
         )
 
-        if response.status_code == 200:
+        if status_code == 200:
+            history = data.get("history", [])
 
-            st.session_state.history = response.json()["history"]
-
+            if isinstance(history, list):
+                st.session_state.history = history
+            else:
+                st.session_state.history = []
         else:
-
             st.session_state.history = []
 
-    # -----------------------------
-    # Display Chat History
-    # -----------------------------
     for chat in st.session_state.history:
 
+        if not isinstance(chat, dict):
+            continue
+
         with st.chat_message("user"):
-            st.write(chat["question"])
+            st.write(chat.get("question", ""))
 
         with st.chat_message("assistant"):
-            st.write(chat["answer"])
+            st.write(chat.get("answer", ""))
 
-    # -----------------------------
-    # Chat Input
-    # -----------------------------
     message = st.chat_input("Type your message...")
 
     if message:
@@ -57,27 +52,39 @@ def chat_page():
         with st.chat_message("user"):
             st.write(message)
 
-        response = send_message(
-            st.session_state.user_id,
-            message
-        )
+        with st.spinner("AI is thinking..."):
 
-        if response.status_code == 200:
+            status_code, data = send_message(
+                st.session_state.user_id,
+                message
+            )
 
-            ai = response.json()["ai_response"]
+        if status_code == 200:
+
+            ai_response = data.get(
+                "ai_response",
+                "No response received."
+            )
 
             with st.chat_message("assistant"):
-                st.write(ai)
+                st.write(ai_response)
 
             st.session_state.history.append(
                 {
                     "question": message,
-                    "answer": ai
+                    "answer": ai_response
                 }
             )
 
             st.rerun()
 
         else:
+            detail = data.get(
+                "detail",
+                "Unable to get response."
+            )
 
-            st.error("Unable to get response.")
+            if isinstance(detail, list):
+                st.error(str(detail))
+            else:
+                st.error(detail)

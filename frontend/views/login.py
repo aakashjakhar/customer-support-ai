@@ -5,11 +5,9 @@ from utils.api import login_user
 def login_page():
 
     st.title("🤖 Customer Support AI")
-
     st.subheader("Login")
 
     email = st.text_input("Email")
-
     password = st.text_input(
         "Password",
         type="password"
@@ -17,26 +15,32 @@ def login_page():
 
     if st.button("Login", use_container_width=True):
 
-        response = login_user(email, password)
+        if not email or not password:
+            st.warning("Please enter email and password.")
+            return
 
-        if response.status_code == 200:
+        status_code, data = login_user(email, password)
 
-            data = response.json()
+        if status_code == 200:
 
             st.session_state.user_id = data["user_id"]
             st.session_state.username = data["username"]
-
             st.session_state.page = "chat"
 
             st.rerun()
 
         else:
-            st.error("Invalid Email or Password")
+            error_message = data.get(
+                "detail",
+                "Invalid email or password"
+            )
+            st.error(error_message)
 
     st.write("---")
 
-    if st.button("Create New Account", use_container_width=True):
-
+    if st.button(
+        "Create New Account",
+        use_container_width=True
+    ):
         st.session_state.page = "register"
-
         st.rerun()
