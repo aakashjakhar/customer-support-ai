@@ -1,8 +1,12 @@
 from fastapi import FastAPI
 
+from backend.app.database.database import Base, engine
+
 from backend.app.api.chat import router as chat_router
 from backend.app.api.auth import router as auth_router
 from backend.app.api.history import router as history_router
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Customer Support AI"
